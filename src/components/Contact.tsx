@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react"
-import { Phone, Mail, MessageCircle, Send, ChevronDown } from "lucide-react"
-import emailjs from "@emailjs/browser"
+import { useState, useEffect, useRef } from "react";
+import { Phone, Mail, MessageCircle, Send, ChevronDown } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -9,13 +9,13 @@ export function Contact() {
     email: "",
     equipment_types: [] as string[],
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
-  >("idle")
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  >("idle");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -23,18 +23,18 @@ export function Contact() {
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
-        setIsDropdownOpen(false)
+        setIsDropdownOpen(false);
       }
-    }
+    };
 
     if (isDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [isDropdownOpen])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   const equipmentOptions = [
     "Betoneiras",
@@ -44,16 +44,16 @@ export function Contact() {
     "Escoras",
     "Vibradores portátil",
     "Outros",
-  ]
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
       const templateParams = {
         name: formData.name,
@@ -61,44 +61,62 @@ export function Contact() {
         email: formData.email,
         equipment_types: formData.equipment_types.join(", "),
         message: formData.message,
-      }
+      };
 
       const result = await emailjs.send(
         serviceId,
         templateId,
         templateParams,
         publicKey
-      )
+      );
 
       if (result.status === 200) {
-        setSubmitStatus("success")
+        setSubmitStatus("success");
+
+        // Gerar mensagem para WhatsApp
+        const whatsappText = `Olá! Gostaria de solicitar um orçamento.\n\n*Detalhes:*\n• Nome: ${
+          formData.name
+        }\n• Telefone: ${formData.phone}${
+          formData.email ? `\n• Email: ${formData.email}` : ""
+        }\n${
+          formData.equipment_types.length > 0
+            ? `• Equipamentos: ${formData.equipment_types.join(", ")}\n`
+            : ""
+        }${formData.message ? `\nObservação: ${formData.message}` : ""}`;
+
+        const encodedMessage = encodeURIComponent(whatsappText);
+        window.open(
+          `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+          "_blank"
+        );
+
         setFormData({
           name: "",
           phone: "",
           email: "",
           equipment_types: [],
           message: "",
-        })
+        });
 
         setTimeout(() => {
-          setSubmitStatus("idle")
-        }, 3000)
+          setSubmitStatus("idle");
+        }, 3000);
       } else {
-        setSubmitStatus("error")
+        setSubmitStatus("error");
         setTimeout(() => {
-          setSubmitStatus("idle")
-        }, 3000)
+          setSubmitStatus("idle");
+        }, 3000);
       }
     } catch (error) {
-      console.error("EmailJS error:", error)
-      setSubmitStatus("error")
+      console.error("EmailJS error:", error);
+      setSubmitStatus("error");
       setTimeout(() => {
-        setSubmitStatus("idle")
-      }, 3000)
+        setSubmitStatus("idle");
+      }, 3000);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -106,25 +124,25 @@ export function Contact() {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const handleEquipmentChange = (equipment: string) => {
     setFormData((prev) => {
       const equipment_types = prev.equipment_types.includes(equipment)
         ? prev.equipment_types.filter((item) => item !== equipment)
-        : [...prev.equipment_types, equipment]
+        : [...prev.equipment_types, equipment];
       return {
         ...prev,
         equipment_types,
-      }
-    })
-  }
+      };
+    });
+  };
 
-  const whatsappNumber = "556332171080"
+  const whatsappNumber = "5563991237836";
   const whatsappMessage = encodeURIComponent(
     "Olá! Gostaria de solicitar um orçamento."
-  )
+  );
 
   return (
     <section
@@ -139,9 +157,7 @@ export function Contact() {
           <p className="text-xl text-gray-600">
             Estamos prontos para atender você
           </p>
-          <p className="text-red-500 text-sm">
-            Preencha o formulário abaixo
-          </p>
+          <p className="text-red-500 text-sm">Preencha o formulário abaixo</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -214,7 +230,7 @@ export function Contact() {
             <h3 className="text-2xl font-bold text-[#2b2220] mb-6">
               Solicite um Orçamento
             </h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
@@ -259,7 +275,8 @@ export function Contact() {
                   htmlFor="email"
                   className="block text-sm font-semibold text-gray-700 mb-2"
                 >
-                  E-mail
+                  E-mail{" "}
+                  <span className="text-xs text-gray-500">(opcional)</span>
                 </label>
                 <input
                   type="email"
@@ -343,7 +360,8 @@ export function Contact() {
                   htmlFor="message"
                   className="block text-sm font-semibold text-gray-700 mb-2"
                 >
-                  Mensagem
+                  Mensagem{" "}
+                  <span className="text-xs text-gray-500">(opcional)</span>
                 </label>
                 <textarea
                   id="message"
@@ -385,9 +403,8 @@ export function Contact() {
               )}
             </form>
           </div>
-          </div>
-          
         </div>
+      </div>
     </section>
-  )
+  );
 }
