@@ -343,7 +343,7 @@ export function Equipment() {
               </div>
               <div className="p-4 sm:p-6 flex flex-col justify-between flex-1">
                 <div>
-                  <div className="text-sm text-[#874234] font-semibold mb-1">
+                  <div className="hidden text-sm text-[#874234] font-semibold mb-1">
                     {item.category}
                   </div>
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#2b2220] mb-1">
