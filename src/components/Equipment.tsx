@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { Phone, Filter, ChevronDown, X } from 'lucide-react';
-import { ClickHandAnimation } from './ClickHandAnimation';
+import { useState, useEffect, useRef } from "react";
+import { Phone, Filter, ChevronDown, X } from "lucide-react";
+import { ClickHandAnimation } from "./ClickHandAnimation";
 
 interface EquipmentItem {
   id: number;
@@ -25,18 +25,24 @@ export function Equipment() {
   const [selectedItem, setSelectedItem] = useState<EquipmentItem | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const detailRef = useRef<HTMLDivElement | null>(null);
- 
+
   // fecha detalhe ao clicar fora (quando aberto)
   useEffect(() => {
     const handleClickOutsideDetail = (event: MouseEvent) => {
-      if (isDetailOpen && detailRef.current && !detailRef.current.contains(event.target as Node)) {
+      if (
+        isDetailOpen &&
+        detailRef.current &&
+        !detailRef.current.contains(event.target as Node)
+      ) {
         setIsDetailOpen(false);
         setSelectedItem(null);
       }
     };
 
-    if (isDetailOpen) document.addEventListener('mousedown', handleClickOutsideDetail);
-    return () => document.removeEventListener('mousedown', handleClickOutsideDetail);
+    if (isDetailOpen)
+      document.addEventListener("mousedown", handleClickOutsideDetail);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutsideDetail);
   }, [isDetailOpen]);
 
   useEffect(() => {
@@ -127,27 +133,30 @@ export function Equipment() {
         image_url: "images/vibrador_portatil.png",
         is_featured: false,
       },
-    ]
+    ];
 
     setEquipment(mockEquipment);
   }, []);
 
-  const categories = ['Todos', ...Array.from(new Set(equipment.map((item) => item.category)))];
+  const categories = [
+    "Todos",
+    ...Array.from(new Set(equipment.map((item) => item.category))),
+  ];
 
   const filteredEquipment =
-    selectedCategories.length === 0 || selectedCategories.includes('Todos')
+    selectedCategories.length === 0 || selectedCategories.includes("Todos")
       ? equipment
       : equipment.filter((item) => selectedCategories.includes(item.category));
 
   const scrollToContact = () => {
-    const element = document.getElementById('contato');
+    const element = document.getElementById("contato");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handleCategorySelect = (category: string) => {
-    if (category === 'Todos') {
+    if (category === "Todos") {
       setSelectedCategories([]);
       return;
     }
@@ -187,10 +196,10 @@ export function Equipment() {
                 key={category}
                 onClick={() => handleCategorySelect(category)}
                 className={`px-6 py-2 rounded-full font-semibold transition-all cursor-pointer ${
-                  (category === 'Todos' && selectedCategories.length === 0) ||
+                  (category === "Todos" && selectedCategories.length === 0) ||
                   selectedCategories.includes(category)
-                    ? 'bg-[#d87934] text-white shadow-lg'
-                    : 'bg-gray-200 text-gray-700'
+                    ? "bg-[#d87934] text-white shadow-lg"
+                    : "bg-gray-200 text-gray-700"
                 }`}
               >
                 {category}
@@ -230,11 +239,18 @@ export function Equipment() {
                 >
                   <div className="flex items-center gap-2">
                     <Filter size={20} />
-                    <span>Filtrar: {selectedCategories.length > 0 ? selectedCategories.length : 'Todos'}</span>
+                    <span>
+                      Filtrar:{" "}
+                      {selectedCategories.length > 0
+                        ? selectedCategories.length
+                        : "Todos"}
+                    </span>
                   </div>
                   <ChevronDown
                     size={20}
-                    className={`transition-transform ${isFilterOpen ? "rotate-180" : ""}`}
+                    className={`transition-transform ${
+                      isFilterOpen ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
 
@@ -245,7 +261,8 @@ export function Equipment() {
                         key={category}
                         onClick={() => handleCategorySelect(category)}
                         className={`w-full text-left px-6 py-3 border-b border-gray-100 last:border-0 font-semibold transition-all flex items-center gap-3 cursor-pointer ${
-                          (category === 'Todos' && selectedCategories.length === 0) ||
+                          (category === "Todos" &&
+                            selectedCategories.length === 0) ||
                           selectedCategories.includes(category)
                             ? "bg-[#d87934] text-white"
                             : "text-gray-700"
@@ -254,7 +271,8 @@ export function Equipment() {
                         <input
                           type="checkbox"
                           checked={
-                            (category === 'Todos' && selectedCategories.length === 0) ||
+                            (category === "Todos" &&
+                              selectedCategories.length === 0) ||
                             selectedCategories.includes(category)
                           }
                           readOnly
@@ -295,12 +313,12 @@ export function Equipment() {
           {filteredEquipment.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden transition-all border border-gray-200 w-full cursor-pointer"
+              className="bg-white rounded-xl shadow-lg overflow-hidden transition-all border border-gray-200 w-full cursor-pointer flex flex-col"
               onClick={() => {
                 // apenas em telas < sm (tailwind sm ~640px)
                 if (windowWidth < 640) {
-                  setSelectedItem(item)
-                  setIsDetailOpen(true)
+                  setSelectedItem(item);
+                  setIsDetailOpen(true);
                 }
               }}
             >
@@ -310,7 +328,7 @@ export function Equipment() {
                   alt={item.name}
                   className="w-full h-full object-cover"
                 />
-                <ClickHandAnimation 
+                <ClickHandAnimation
                   breakpoint={640}
                   xPosition="center"
                   yPosition="center"
@@ -323,18 +341,31 @@ export function Equipment() {
                   </div>
                 )}
               </div>
-              <div className="p-4 sm:p-6">
-                <div className="text-sm text-[#874234] font-semibold mb-1">{item.category}</div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#2b2220] mb-1">{item.name}</h3>
+              <div className="p-4 sm:p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div className="text-sm text-[#874234] font-semibold mb-1">
+                    {item.category}
+                  </div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#2b2220] mb-1">
+                    {item.name}
+                  </h3>
 
-                {/* descrição e especificações escondidas em telas < sm */}
-                <p className="hidden sm:block text-gray-600 mb-2 text-sm">{item.description}</p>
-                <div className="hidden sm:block bg-gray-50 p-2 rounded-lg mb-3">
-                  <p className="text-sm text-gray-700">{item.specifications}</p>
+                  {/* descrição e especificações escondidas em telas < sm */}
+                  <p className="hidden sm:block text-gray-600 mb-2 text-sm">
+                    {item.description}
+                  </p>
+                  <div className="hidden sm:block bg-gray-50 p-2 rounded-lg mb-3">
+                    <p className="text-sm text-gray-700">
+                      {item.specifications}
+                    </p>
+                  </div>
                 </div>
-                
+
                 <button
-                  onClick={(e) => { e.stopPropagation(); scrollToContact(); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    scrollToContact();
+                  }}
                   className="w-full bg-[#d87934] hover:bg-[#874234] text-white px-3 py-2 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
                   <Phone size={16} />
@@ -348,33 +379,58 @@ export function Equipment() {
         {/* Modal / detalhe para telas pequenas */}
         {isDetailOpen && selectedItem && windowWidth < 640 && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-            <div ref={detailRef} className="bg-white rounded-lg w-full max-w-sm overflow-hidden relative">
+            <div
+              ref={detailRef}
+              className="bg-white rounded-lg w-full max-w-sm overflow-hidden relative"
+            >
               <button
-                onClick={() => { setIsDetailOpen(false); setSelectedItem(null); }}
+                onClick={() => {
+                  setIsDetailOpen(false);
+                  setSelectedItem(null);
+                }}
                 aria-label="Fechar"
                 className="absolute top-3 right-3 p-2 rounded-full text-gray-700 hover:bg-gray-100"
               >
                 ✕
               </button>
               <div className="h-44 overflow-hidden bg-gray-200">
-                <img src={selectedItem.image_url} alt={selectedItem.name} className="w-full h-full object-cover" />
+                <img
+                  src={selectedItem.image_url}
+                  alt={selectedItem.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="p-4">
-                <div className="text-sm text-[#874234] font-semibold mb-1">{selectedItem.category}</div>
-                <h3 className="text-lg font-bold text-[#2b2220] mb-2">{selectedItem.name}</h3>
-                <p className="text-gray-600 mb-3 text-sm">{selectedItem.description}</p>
+                <div className="text-sm text-[#874234] font-semibold mb-1">
+                  {selectedItem.category}
+                </div>
+                <h3 className="text-lg font-bold text-[#2b2220] mb-2">
+                  {selectedItem.name}
+                </h3>
+                <p className="text-gray-600 mb-3 text-sm">
+                  {selectedItem.description}
+                </p>
                 <div className="bg-gray-50 p-2 rounded-lg mb-4">
-                  <p className="text-sm text-gray-700">{selectedItem.specifications}</p>
+                  <p className="text-sm text-gray-700">
+                    {selectedItem.specifications}
+                  </p>
                 </div>
                 <div className="flex gap-3">
                   <button
-                    onClick={() => { scrollToContact(); setIsDetailOpen(false); setSelectedItem(null); }}
+                    onClick={() => {
+                      scrollToContact();
+                      setIsDetailOpen(false);
+                      setSelectedItem(null);
+                    }}
                     className="flex-1 bg-[#d87934] text-white px-4 py-2 rounded-lg font-semibold"
                   >
                     Solicitar Orçamento
                   </button>
                   <button
-                    onClick={() => { setIsDetailOpen(false); setSelectedItem(null); }}
+                    onClick={() => {
+                      setIsDetailOpen(false);
+                      setSelectedItem(null);
+                    }}
                     className="flex-1 bg-gray-200 text-[#2b2220] px-4 py-2 rounded-lg font-semibold"
                   >
                     Fechar

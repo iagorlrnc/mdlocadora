@@ -29,7 +29,7 @@ export function Footer() {
               Locação de equipamentos para construção civil com qualidade e
               segurança.
             </p><br/>
-			<p>CNPJ: 0000.0000.0000/00</p>
+			<p>CNPJ: 27.451.222/0001-87</p>
           </div>
 
           <div>
@@ -83,6 +83,14 @@ export function Footer() {
                   className="hover:text-[#d87934] transition-colors"
                 >
                   Contato
+                </button>
+              </li>
+			  <li>
+                <button
+                  onClick={() => scrollToSection("review")}
+                  className="hover:text-[#d87934] transition-colors"
+                >
+                  Avaliações
                 </button>
               </li>
             </ul>

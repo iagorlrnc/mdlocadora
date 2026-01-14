@@ -1,9 +1,9 @@
-import { Menu, X } from "lucide-react"
-import { useState, useRef, useEffect } from "react"
+import { Menu, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const headerRef = useRef<HTMLElement | null>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -12,30 +12,30 @@ export function Header() {
         headerRef.current &&
         !headerRef.current.contains(event.target as Node)
       ) {
-        setIsMenuOpen(false)
+        setIsMenuOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [isMenuOpen])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMenuOpen]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
       // calcula posição do topo da section considerando a altura do header sticky
-      const headerHeight = headerRef.current?.offsetHeight ?? 0
+      const headerHeight = headerRef.current?.offsetHeight ?? 0;
       const top =
-        element.getBoundingClientRect().top + window.pageYOffset - headerHeight
+        element.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
-      window.scrollTo({ top, behavior: "smooth" })
+      window.scrollTo({ top, behavior: "smooth" });
       // garante que o menu feche em mobile
-      setIsMenuOpen(false)
+      setIsMenuOpen(false);
       // opcional: ajusta foco para acessibilidade
-      element.setAttribute("tabindex", "-1")
-      ;(element as HTMLElement).focus({ preventScroll: true })
+      element.setAttribute("tabindex", "-1");
+      (element as HTMLElement).focus({ preventScroll: true });
     }
-  }
+  };
 
   return (
     <header
@@ -51,7 +51,7 @@ export function Header() {
                 alt="MD"
                 className="h-12 w-12 inline-block align-middle"
               />
-              <span className="align-middle">
+              <span className="align-middle lg:hidden xl:inline-block">
                 <span className="text-[#d87934]">MD</span>Locadora
               </span>
             </div>
@@ -94,14 +94,14 @@ export function Header() {
             >
               Contato
             </button>
-			<button
+            <button
               onClick={() => scrollToSection("review")}
               className="hover:text-[#d87934] transition-colors whitespace-nowrap"
             >
               Avaliações
             </button>
           </nav>
-          
+
           <button
             onClick={() => scrollToSection("contato")}
             className="hidden lg:block bg-[#d87934] hover:bg-[#874234] text-white px-5 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 whitespace-nowrap"
@@ -163,7 +163,7 @@ export function Header() {
             >
               Contato
             </button>
-			<button
+            <button
               onClick={() => scrollToSection("review")}
               className="hover:text-[#d87934] transition-colors whitespace-nowrap"
             >
@@ -179,5 +179,5 @@ export function Header() {
         )}
       </div>
     </header>
-  )
+  );
 }
