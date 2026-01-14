@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Phone, Filter, ChevronDown, X } from 'lucide-react';
+import { ClickHandAnimation } from './ClickHandAnimation';
 
 interface EquipmentItem {
   id: number;
@@ -308,6 +309,13 @@ export function Equipment() {
                   src={item.image_url}
                   alt={item.name}
                   className="w-full h-full object-cover"
+                />
+                <ClickHandAnimation 
+                  breakpoint={640}
+                  xPosition="center"
+                  yPosition="center"
+                  size={40}
+                  loopDelay={1500}
                 />
                 {item.is_featured && (
                   <div className="absolute top-4 right-4 bg-[#d87934] text-white px-3 py-1 rounded-full text-sm font-semibold">
