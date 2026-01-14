@@ -55,6 +55,7 @@ export function Equipment() {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         isFilterOpen &&
+        windowWidth < 600 &&
         filterRef.current &&
         !filterRef.current.contains(event.target as Node)
       ) {
@@ -62,14 +63,14 @@ export function Equipment() {
       }
     };
 
-    if (isFilterOpen) {
+    if (isFilterOpen && windowWidth < 600) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isFilterOpen]);
+  }, [isFilterOpen, windowWidth]);
 
   useEffect(() => {
     const mockEquipment: EquipmentItem[] = [
@@ -328,13 +329,15 @@ export function Equipment() {
                   alt={item.name}
                   className="w-full h-full object-cover"
                 />
-                <ClickHandAnimation
-                  breakpoint={640}
-                  xPosition="center"
-                  yPosition="center"
-                  size={40}
-                  loopDelay={1500}
-                />
+                {!isFilterOpen && (
+                  <ClickHandAnimation
+                    breakpoint={640}
+                    xPosition="center"
+                    yPosition="center"
+                    size={40}
+                    loopDelay={1500}
+                  />
+                )}
                 {item.is_featured && (
                   <div className="absolute top-4 right-4 bg-[#d87934] text-white px-3 py-1 rounded-full text-sm font-semibold">
                     Destaque
