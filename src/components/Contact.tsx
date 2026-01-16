@@ -139,7 +139,7 @@ export function Contact() {
     });
   };
 
-  const whatsappNumber = "5563991237836";
+  const whatsappNumber = "556332171080";
   const whatsappMessage = encodeURIComponent(
     "Olá! Gostaria de solicitar um orçamento."
   );
