@@ -316,7 +316,6 @@ export function Equipment() {
               key={item.id}
               className="bg-white rounded-xl shadow-lg overflow-hidden transition-all border border-gray-200 w-full cursor-pointer flex flex-col"
               onClick={() => {
-                // apenas em telas < sm (tailwind sm ~640px)
                 if (windowWidth < 640) {
                   setSelectedItem(item);
                   setIsDetailOpen(true);
