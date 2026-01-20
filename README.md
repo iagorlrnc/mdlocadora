@@ -1,20 +1,21 @@
 # MD Locadora - Locação de Equipamentos
+- [https://mdlocadora.vercel.app/](https://mdlocadora.vercel.app/)
 
 ## Sobre o Projeto
 
-Este é o website institucional da **MD Locadora**, uma empresa especializada em locação de equipamentos para construção civil. Com mais de 13 anos de experiência no mercado, oferecemos soluções ágeis e seguras para locação de equipamentos, priorizando qualidade, eficiência e atendimento personalizado.
+Este é o website da **MD Locadora**, uma empresa especializada em locação de equipamentos para construção civil.
 
 O projeto consiste em uma aplicação web responsiva desenvolvida com tecnologias modernas, permitindo aos usuários explorar nossos serviços, visualizar equipamentos disponíveis, consultar localização, horário de funcionamento, avaliações de clientes e entrar em contato para solicitações de orçamento.
 
 ## Funcionalidades
 
-- **Página Inicial (Hero)**: Apresentação da empresa
+- **Página Inicial**: Apresentação da empresa para os usuários
 - **Recursos**: Destaque dos diferenciais da empresa
 - **Sobre Nós**: Informações sobre a história e experiência da MD Locadora
 - **Equipamentos**: Catálogo visual dos equipamentos disponíveis para locação
 - **Localização**: Informações de endereço e como nos encontrar
 - **Horário de Funcionamento**: Dias e horários de atendimento
-- **Contato**: Formulário para solicitações de orçamento com envio automático por email e WhatsApp simultaneamente.
+- **Contato**: Formulário para solicitações de orçamento com envio automático para o responsável pela empresa, por email e WhatsApp, simultaneamente.
 - **Avaliações**: Integração com Google Reviews para feedback de clientes
 - **Botão WhatsApp**: Link direto para contato via WhatsApp
 - **Rodapé**: Informações adicionais e links de contato
@@ -137,14 +138,6 @@ Para visualizar a versão de produção localmente:
 npm run preview
 ```
 
-### Verificação de Tipos
-
-Para executar a verificação de tipos TypeScript:
-
-```bash
-npm run typecheck
-```
-
 ### Linting
 
 Para executar o linter ESLint:
@@ -156,7 +149,6 @@ npm run lint
 ## Deploy
 
 O projeto está configurado para deploy no **Vercel**:
-[https://mdlocadora.vercel.app/](https://mdlocadora.vercel.app/)
 
 1. Conecte seu repositório no [Vercel](https://vercel.com)
 2. Configure as variáveis de ambiente no painel do Vercel
@@ -169,9 +161,9 @@ O arquivo `vercel.json` garante o roteamento correto para uma Single Page Applic
 ```
 mdlocadora/
 ├── public/
-│   └── images/          # Imagens estáticas
+│   └── images/         
 ├── src/
-│   ├── components/      # Componentes React
+│   ├── components/     
 │   │   ├── Header.tsx
 │   │   ├── Hero.tsx
 │   │   ├── Features.tsx
@@ -184,9 +176,9 @@ mdlocadora/
 │   │   ├── WhatsAppButton.tsx
 │   │   └── Footer.tsx
 │   │
-│   ├── App.tsx          # Componente principal
-│   ├── main.tsx         # Ponto de entrada
-│   └── index.css        # Estilos globais
+│   ├── App.tsx          
+│   ├── main.tsx        
+│   └── index.css        
 │
 ├── package.json
 ├── vite.config.ts
@@ -200,7 +192,7 @@ mdlocadora/
 
 **Iagor Lourenço**
 
-- GitHub: [https://github.com/iagorlrnc/mdlocadora](hhttps://github.com/iagorlrnc/mdlocadora)
+- GitHub: [https://github.com/iagorlrnc](https://github.com/iagorlrnc)
 - Email: theiagorlourenco@gmail.com
 - WhatsApp: (63) 99123-7836
 
