@@ -95,7 +95,7 @@ npm --version
 
 4. **Configure as variáveis de ambiente** (opcional):
 
-   Crie um arquivo `.env.local` na raiz do projeto e adicione suas chaves de API:
+   Crie um arquivo `.env.local` na raiz do projeto e adicione suas chaves de API do EmailJS:
 
    ```
    VITE_EMAILJS_SERVICE_ID=seu_service_id
