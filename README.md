@@ -5,7 +5,7 @@
 
 Este é o website da **MD Locadora**, uma empresa especializada em locação de equipamentos para construção civil.
 
-O projeto consiste em uma aplicação web responsiva desenvolvida com tecnologias modernas, permitindo aos usuários explorar nossos serviços, visualizar equipamentos disponíveis, consultar localização, horário de funcionamento, avaliações de clientes e entrar em contato para solicitações de orçamento.
+O projeto consiste em uma aplicação web responsiva, permitindo aos usuários explorar os serviços, visualizar equipamentos disponíveis, consultar localização, horário de funcionamento, avaliações de clientes e entrar em contato para solicitações de orçamento.
 
 ## Funcionalidades
 
