@@ -310,7 +310,7 @@ export function Equipment() {
         </div>
 
         {/* GRID: 2 colunas em telas < md, 3 colunas em lg+ */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 ${isFilterOpen && windowWidth < 600 ? 'pointer-events-none' : ''}`}>
           {filteredEquipment.map((item) => (
             <div
               key={item.id}
