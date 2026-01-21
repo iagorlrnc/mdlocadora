@@ -193,6 +193,7 @@ mdlocadora/
 **Iagor Lourenço**
 
 - GitHub: [https://github.com/iagorlrnc](https://github.com/iagorlrnc)
+- LinkedIn: [linkedin.com/in/iagorlrnc/](https://www.linkedin.com/in/iagorlrnc/)
 - Email: theiagorlourenco@gmail.com
 - WhatsApp: (63) 99123-7836
 
