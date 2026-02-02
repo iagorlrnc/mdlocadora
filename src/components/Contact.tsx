@@ -165,8 +165,8 @@ export function Contact() {
             <h3 className="text-2xl font-bold text-[#2b2220] mb-6">
               Solicite um Orçamento
             </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <div classname="space-y-6 mb-8">
+              <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="name"
@@ -337,6 +337,8 @@ export function Contact() {
                 </div>
               )}
             </form>
+            </div>
+            
           </div>
           <div>
             <h3 className="text-2xl font-bold text-[#2b2220] mb-6">
