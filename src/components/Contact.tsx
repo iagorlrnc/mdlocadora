@@ -161,71 +161,6 @@ export function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold text-[#2b2220] mb-6">
-              Fale Conosco
-            </h3>
-
-            <div className="space-y-6 mb-8">
-              <div className="flex items-start gap-4 bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="bg-[#d87934] p-3 rounded-full">
-                  <Phone className="text-white" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-[#2b2220] mb-1">Telefone</h4>
-                  <a
-                    href="tel:+556332171080"
-                    className="text-gray-700 hover:text-[#d87934] transition-colors"
-                  >
-                    (63) 3217-1080
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="bg-[#d87934] p-3 rounded-full">
-                  <Mail className="text-white" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-[#2b2220] mb-1">E-mail</h4>
-                  <a
-                    href="mailto:mdlocadora2017@gmail.com"
-                    className="text-gray-700 hover:text-[#d87934] transition-colors"
-                  >
-                    mdlocadora2017@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="bg-[#25D366] p-3 rounded-full">
-                  <MessageCircle className="text-white" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-[#2b2220] mb-1">WhatsApp</h4>
-                  <a
-                    href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-700 hover:text-[#25D366] transition-colors"
-                  >
-                    (63) 3217-1080
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg w-full justify-center"
-            >
-              <MessageCircle size={24} />
-              Falar no WhatsApp
-            </a>
-          </div>
-
           <div id="orcamento" className="bg-white p-8 rounded-xl shadow-lg">
             <h3 className="text-2xl font-bold text-[#2b2220] mb-6">
               Solicite um Orçamento
@@ -402,6 +337,70 @@ export function Contact() {
                 </div>
               )}
             </form>
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold text-[#2b2220] mb-6">
+              Fale Conosco
+            </h3>
+
+            <div className="space-y-6 mb-8">
+              <div className="flex items-start gap-4 bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-[#d87934] p-3 rounded-full">
+                  <Phone className="text-white" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#2b2220] mb-1">Telefone</h4>
+                  <a
+                    href="tel:+556332171080"
+                    className="text-gray-700 hover:text-[#d87934] transition-colors"
+                  >
+                    (63) 3217-1080
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-[#d87934] p-3 rounded-full">
+                  <Mail className="text-white" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#2b2220] mb-1">E-mail</h4>
+                  <a
+                    href="mailto:mdlocadora2017@gmail.com"
+                    className="text-gray-700 hover:text-[#d87934] transition-colors"
+                  >
+                    mdlocadora2017@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-[#25D366] p-3 rounded-full">
+                  <MessageCircle className="text-white" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#2b2220] mb-1">WhatsApp</h4>
+                  <a
+                    href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-700 hover:text-[#25D366] transition-colors"
+                  >
+                    (63) 3217-1080
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg w-full justify-center"
+            >
+              <MessageCircle size={24} />
+              Falar no WhatsApp
+            </a>
           </div>
         </div>
       </div>
