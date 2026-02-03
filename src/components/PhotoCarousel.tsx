@@ -83,6 +83,8 @@ export const PhotoCarousel = () => {
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging || !scrollContainerRef.current) return
 
+    // Prevenir scroll vertical no mobile
+    e.preventDefault()
     setHasDragged(true)
     setIsAutoplay(false)
     const x = e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0)
@@ -109,7 +111,7 @@ export const PhotoCarousel = () => {
   }
 
   // Clique na imagem
-  const handleImageClick = (photo: string, e: React.MouseEvent) => {
+  const handleImageClick = (photo: string) => {
     // Só abre se não estiver arrastando
     if (!hasDragged) {
       setSelectedImage(photo)
@@ -134,7 +136,6 @@ export const PhotoCarousel = () => {
 
         // Ciclo infinito - volta ao início quando chega no meio
         const scrollWidth = container.scrollWidth
-        const clientWidth = container.clientWidth
         if (container.scrollLeft >= scrollWidth / 2) {
           container.scrollLeft = 0
         }
@@ -164,8 +165,10 @@ export const PhotoCarousel = () => {
             <style>{`
               .carousel-scroll {
                 display: flex;
-                scroll-behavior: smooth;
+                scroll-behavior: ${isDragging ? "auto" : "smooth"};
                 cursor: ${isDragging ? "grabbing" : "grab"};
+                touch-action: pan-x;
+                -webkit-overflow-scrolling: touch;
               }
 
               .scroll-item {
@@ -185,7 +188,11 @@ export const PhotoCarousel = () => {
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              style={{ userSelect: isDragging ? "none" : "auto" }}
+              style={{
+                userSelect: isDragging ? "none" : "auto",
+                WebkitUserSelect: isDragging ? "none" : "auto",
+                touchAction: "pan-x",
+              }}
             >
               {/* Primeira sequência */}
               {photos.map((photo, index) => (
@@ -198,7 +205,7 @@ export const PhotoCarousel = () => {
                     alt={`Foto ${index + 1}`}
                     className={`rounded-lg shadow-lg w-full ${getImageHeight(index)} object-cover transition-transform duration-300 hover:scale-105 select-none cursor-pointer`}
                     draggable={false}
-                    onClick={(e) => handleImageClick(photo, e)}
+                    onClick={() => handleImageClick(photo)}
                   />
                 </div>
               ))}
@@ -214,7 +221,7 @@ export const PhotoCarousel = () => {
                     alt={`Foto ${index + 1}`}
                     className={`rounded-lg shadow-lg w-full ${getImageHeight(index)} object-cover transition-transform duration-300 hover:scale-105 select-none cursor-pointer`}
                     draggable={false}
-                    onClick={(e) => handleImageClick(photo, e)}
+                    onClick={() => handleImageClick(photo)}
                   />
                 </div>
               ))}
