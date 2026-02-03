@@ -127,16 +127,20 @@ export const PhotoCarousel = () => {
 
   // Auto play com ciclo infinito
   useEffect(() => {
-    if (!isAutoplay || !scrollContainerRef.current) return
+    const container = scrollContainerRef.current
+    if (!container || !isAutoplay) return
 
     const interval = setInterval(() => {
-      const container = scrollContainerRef.current
-      if (container) {
+      if (scrollContainerRef.current && isAutoplay) {
+        const container = scrollContainerRef.current
         container.scrollLeft += 2
 
         // Ciclo infinito - volta ao início quando chega no meio
         const scrollWidth = container.scrollWidth
-        if (container.scrollLeft >= scrollWidth / 2) {
+        const halfWidth = scrollWidth / 2
+
+        // Reset suave para criar loop infinito
+        if (container.scrollLeft >= halfWidth - 100) {
           container.scrollLeft = 0
         }
       }
@@ -165,7 +169,7 @@ export const PhotoCarousel = () => {
             <style>{`
               .carousel-scroll {
                 display: flex;
-                scroll-behavior: ${isDragging ? "auto" : "smooth"};
+                scroll-behavior: auto;
                 cursor: ${isDragging ? "grabbing" : "grab"};
                 touch-action: pan-x;
                 -webkit-overflow-scrolling: touch;
