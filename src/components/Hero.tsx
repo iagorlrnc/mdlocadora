@@ -23,7 +23,7 @@ export function Hero() {
             </h1>
 
             <p className="text-xl text-gray-200">
-              Estamos a mais de 13 anos no mercado, somos a melhor opção em
+              Estamos a mais de 15 anos no mercado, somos a melhor opção em
               preço, qualidade e eficiência, venha ser nosso amigo e cliente!
             </p>
           </div>
