@@ -89,7 +89,7 @@ export function About() {
               />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-[#d87934] text-white p-6 rounded-lg shadow-2xl">
-              <div className="text-4xl font-bold mb-1">+13</div>
+              <div className="text-4xl font-bold mb-1">+15</div>
               <div className="text-sm">Anos de Experiência</div>
             </div>
           </div>
