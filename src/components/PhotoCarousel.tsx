@@ -57,6 +57,16 @@ export const PhotoCarousel = () => {
     setScrollLeft(scrollContainerRef.current?.scrollLeft || 0)
   }
 
+  // Touch start - inicia o arrasto no mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true)
+    setHasDragged(false)
+    setStartX(
+      e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0),
+    )
+    setScrollLeft(scrollContainerRef.current?.scrollLeft || 0)
+  }
+
   // Mouse move - arrasta o scroll
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !scrollContainerRef.current) return
@@ -69,8 +79,28 @@ export const PhotoCarousel = () => {
     scrollContainerRef.current.scrollLeft = scrollLeft - walk
   }
 
+  // Touch move - arrasta o scroll no mobile
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return
+
+    setHasDragged(true)
+    setIsAutoplay(false)
+    const x = e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0)
+    const walk = (x - startX) * 1
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk
+  }
+
   // Mouse up - termina o arrasto
   const handleMouseUp = () => {
+    setIsDragging(false)
+    // Retoma autoplay se não houver imagem aberta
+    if (!selectedImage) {
+      setIsAutoplay(true)
+    }
+  }
+
+  // Touch end - termina o arrasto no mobile
+  const handleTouchEnd = () => {
     setIsDragging(false)
     // Retoma autoplay se não houver imagem aberta
     if (!selectedImage) {
@@ -152,6 +182,9 @@ export const PhotoCarousel = () => {
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
               style={{ userSelect: isDragging ? "none" : "auto" }}
             >
               {/* Primeira sequência */}
