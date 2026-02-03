@@ -1,15 +1,16 @@
 // import { useEffect } from 'react'
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { Features } from './components/Features';
-import { Equipment } from './components/Equipment';
-import { About } from './components/About';
-import { Location } from './components/Location';
-import { Contact } from './components/Contact';
-import { BusinessHours } from './components/BusinessHours';
-import { Reviews } from './components/Reviews';
-import WhatsAppButton from './components/WhatsAppButton';
-import { Footer } from './components/Footer';
+import { Header } from "./components/Header"
+import { Hero } from "./components/Hero"
+import { Features } from "./components/Features"
+import { Equipment } from "./components/Equipment"
+import { PhotoCarousel } from "./components/PhotoCarousel"
+import { About } from "./components/About"
+import { Location } from "./components/Location"
+import { Contact } from "./components/Contact"
+import { BusinessHours } from "./components/BusinessHours"
+import { Reviews } from "./components/Reviews"
+import WhatsAppButton from "./components/WhatsAppButton"
+import { Footer } from "./components/Footer"
 
 function App() {
   // useEffect(() => {
@@ -26,10 +27,11 @@ function App() {
         <Features />
         <About />
         <Equipment />
+        <PhotoCarousel />
         <Location />
         <BusinessHours />
         <Contact />
-		<Reviews />
+        <Reviews />
       </main>
       <Footer />
       <WhatsAppButton />
@@ -37,4 +39,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
